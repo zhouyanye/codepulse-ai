@@ -1,0 +1,42 @@
+name: Deploy to Render
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  PYTHON_VERSION: 3.10
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Run tests before deployment
+      run: |
+        python -m pytest tests/ -v
+        
+    - name: Deploy to Render (API)
+      uses: actions-hub/render@v1.0
+      if: always()
+      env:
+        RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK_API }}
+        
+    - name: Deploy to Render (Web)
+      uses: actions-hub/render@v1.0
+      if: always()
+      env:
+        RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK_WEB }}

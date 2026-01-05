@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 项目文档
+    url: https://github.com/zhouyanye/codepulse-ai/wiki
+    about: 请查看项目文档以获取更多信息
+  - name: 问题讨论
+    url: https://github.com/zhouyanye/codepulse-ai/discussions
+    about: 对于一般性问题和讨论，请使用 GitHub Discussions

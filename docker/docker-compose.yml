@@ -1,0 +1,137 @@
+version: '3.9'
+
+services:
+  # Redis缓存与消息队列
+  redis:
+    image: redis:7-alpine
+    container_name: docker_redis_1
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # FastAPI后端服务
+  fastapi:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      args:
+        - USE_CHINA_MIRROR=true
+        - BUILD_TARGET=fastapi
+    image: codepulse-ai:latest
+    container_name: docker_fastapi_1
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../.env
+    volumes:
+      - ../temp_repos:/app/temp_repos
+      - ../data:/app/data
+      - ../logs:/app/logs
+      - app_data:/app/.streamlit
+    environment:
+      - PYTHONUNBUFFERED=1
+      - REDIS_URL=redis://redis:6379/0
+    command: ["python", "run.py", "--component", "fastapi"]
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Celery Worker服务
+  celery-worker:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      args:
+        - USE_CHINA_MIRROR=true
+        - BUILD_TARGET=celery
+    image: codepulse-ai:latest
+    container_name: docker_celery-worker_1
+    env_file:
+      - ../.env
+    volumes:
+      - ../temp_repos:/app/temp_repos
+      - ../data:/app/data
+      - ../logs:/app/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+      - REDIS_URL=redis://redis:6379/0
+    command: ["python", "run.py", "--component", "celery"]
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Streamlit前端服务
+  streamlit:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      args:
+        - USE_CHINA_MIRROR=true
+        - BUILD_TARGET=streamlit
+    image: codepulse-ai:latest
+    container_name: docker_streamlit_1
+    ports:
+      - "8501:8501"
+    env_file:
+      - ../.env
+    volumes:
+      - ../temp_repos:/app/temp_repos
+      - ../data:/app/data
+      - ../logs:/app/logs
+      - app_data:/app/.streamlit
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: ["streamlit", "run", "web/main.py", "--server.port=8501", "--server.address=0.0.0.0"]
+    depends_on:
+      - fastapi
+    restart: unless-stopped
+
+  # Flower监控服务
+  flower:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      args:
+        - USE_CHINA_MIRROR=true
+        - BUILD_TARGET=flower
+    image: codepulse-ai:latest
+    container_name: docker_flower_1
+    ports:
+      - "5555:5555"  # 主端口
+      - "15555:5555" # Windows兼容端口
+    env_file:
+      - ../.env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - REDIS_URL=redis://redis:6379/0
+    command: ["celery", "-A", "app.celery", "--broker=redis://redis:6379/0", "--result-backend=redis://redis:6379/0", "flower", "--port=5555","--address=0.0.0.0"]
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+    driver: local
+  app_data:
+    driver: local
+
+networks:
+  default:
+    name: codepulse-network

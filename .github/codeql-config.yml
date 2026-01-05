@@ -1,0 +1,26 @@
+name: "CodeQL 配置"
+
+paths:
+  - app/
+  - services/
+  - models/
+  - utils/
+  - web/
+  - cli.py
+  - run.py
+
+paths-ignore:
+  - tests/
+  - docs/
+  - data/
+  - docker/
+  - .github/
+  - README.md
+  - README_en.md
+  - Project_Documentation.md
+  - AI_Programming_Report.md
+  - requirements.txt
+  - .env.example
+  - render.yaml
+  - CODE_OF_CONDUCT.md
+  - CONTRIBUTING.md
