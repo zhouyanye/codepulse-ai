@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PDF测试文件</title>
+    <style>
+        body {
+            font-family: Arial, "Microsoft YaHei", "SimSun", sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .chinese-text {
+            font-size: 16px;
+        }
+        .english-text {
+            font-size: 16px;
+        }
+        .special-characters {
+            font-size: 18px;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: "Courier New", Consolas, monospace;
+            overflow-x: auto;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>PDF生成测试文档</h1>
+    
+    <h2>中文文本测试</h2>
+    <div class="chinese-text">
+        这是一段用于测试PDF生成的中文文本。它包含了各种常见的中文字符，包括简体中文和繁體中文。
+        我们需要确保所有汉字都能正确渲染，特别是那些不常用的汉字或者特殊符号。
+        在软件开发过程中，正确处理国际化字符是非常重要的。
+    </div>
+    
+    <h2>English Text Test</h2>
+    <div class="english-text">
+        This is a sample English text used to test PDF generation. It includes various common English characters
+        and punctuation marks. We want to make sure that all characters are rendered correctly in the final PDF.
+        Proper handling of international characters is crucial in software development.
+    </div>
+    
+    <h2>Special Characters & Symbols</h2>
+    <div class="special-characters">
+        Special symbols: @#$%^&*()_+-={}[]|\:;\"'<>?,./
+        Currency symbols: $€£¥¢₹₽₩₪₨₱₡₫₴₵₸₺₼₾ℳ₯₠₣₤₶₷₸₹₺₻
+        Math symbols: ∀∃∅∇∈∉∋∌∏∑√∝∞∟∠∡∢∣∤∥∦∧∨∩∪∫∬∭∮
+        Greek letters: ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ αβγδεζηθικλμνξοπρστυφχψω
+        Arrows: ←↑→↓↔↕↖↗↘↙⇐⇑⇒⇓⇔⇕⇖⇗⇘⇙
+    </div>
+    
+    <h2>Programming Code Test</h2>
+    <div class="code-block">
+        // Python 示例代码<br>
+        def hello_world():<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;print("Hello, 世界!")<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return True<br>
+        <br>
+        class MyClass:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, value):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.value = value<br>
+        <br>
+        # JavaScript 示例代码<br>
+        function fibonacci(n) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;if (n <= 1) return n;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return fibonacci(n - 1) + fibonacci(n - 2);<br>
+        }<br>
+        <br>
+        const obj = {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"name": "测试名称",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"value": 12345<br>
+        };<br>
+    </div>
+    
+    <h2>Table Test</h2>
+    <table>
+        <tr>
+            <th>Language</th>
+            <th>Hello World</th>
+            <th>Special Characters</th>
+        </tr>
+        <tr>
+            <td>中文</td>
+            <td>你好，世界！</td>
+            <td>！@#￥%……&*（）</td>
+        </tr>
+        <tr>
+            <td>English</td>
+            <td>Hello, World!</td>
+            <td>!@#$%^&*()</td>
+        </tr>
+        <tr>
+            <td>Español</td>
+            <td>¡Hola Mundo!</td>
+            <td>¡!¿?@#$%^&*()</td>
+        </tr>
+    </table>
+    
+    <h2>Mixed Content Test</h2>
+    <p>
+        在这段文本中，我们混合了多种语言：English text with 中文字符 和 some_special@characters!
+        还有一些数学公式如：E=mc², a²+b²=c², 和一些emoji表情符号：
+        😀😃😄😁😆😅😂🤣🥲☺️😊😇🙂🙃😉😌😍🥰😘😗😙😚😋😛😝😜🤪🤨🧐🤓😎🥸🤩🥳😏😒😞😔😟😕🙁☹️😣😖😫😩🥺😢😭😤😠😡🤬🤯😳🥵🥶😱😨😰😥😓🤗🤔🤭🤫🤥😶😐😑😬🙄😯😦😧😮😲🥱😴🤤😪😵🤐🥴🤢🤮🤧😷🤒🤕🤑🤠😈👿👹👺🤡💩👻💀☠️👽👾🤖🎃😺😸😹😻😼😽🙀😿😾
+    </p>
+</body>
+</html>

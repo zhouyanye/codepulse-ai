@@ -1,0 +1,75 @@
+name: 🎨 前端 (Streamlit) 问题
+about: 报告与Streamlit前端相关的问题
+title: "🎨 [Frontend] "
+labels: ["frontend", "streamlit", "bug"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您报告前端问题！请提供详细信息以便我们快速定位和解决问题。
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 清晰简洁地描述前端问题
+      placeholder: 告诉我们您在Streamlit前端遇到了什么问题...
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: 浏览器信息
+      description: 您使用的浏览器及版本
+      placeholder: 例如：Chrome 119.0, Firefox 120.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 重现步骤
+      description: 请提供重现该问题的详细步骤
+      value: |
+        1.
+        2.
+        3.
+        4.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+      description: 清晰简洁地描述您期望前端如何表现
+      placeholder: 告诉我们您期望前端如何工作...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: 受影响的前端组件
+      description: 选择受影响的前端组件
+      options:
+        - 整体界面
+        - 分析输入区域
+        - 进度显示
+        - 结果展示
+        - 成本估算
+        - 自动修复功能
+        - 导出功能
+        - 语言切换
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 前端错误日志
+      description: 请粘贴浏览器控制台中的错误信息
+      render: shell

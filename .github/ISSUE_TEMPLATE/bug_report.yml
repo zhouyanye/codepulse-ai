@@ -1,0 +1,72 @@
+name: 🐛 Bug 报告
+about: 提交一个错误报告以帮助我们改进
+title: "🐛 [Bug] "
+labels: ["bug", "triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您花时间填写此错误报告！请确保搜索现有的问题，以避免重复提交。
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 清晰简洁地描述错误是什么
+      placeholder: 告诉我们您遇到了什么问题...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 重现步骤
+      description: 请提供重现该问题的详细步骤
+      value: |
+        1.
+        2.
+        3.
+        4.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+      description: 清晰简洁地描述您期望发生什么
+      placeholder: 告诉我们您期望发生什么...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 环境信息
+      description: 请提供您的环境信息
+      value: |
+        - 操作系统:
+        - Python 版本:
+        - CodePulse AI 版本:
+        - AI 服务提供商:
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 相关日志
+      description: 请粘贴相关的错误日志或堆栈跟踪
+      render: shell
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 确认事项
+      description: 在提交之前，请确认以下事项
+      options:
+        - label: 我已经搜索了现有的问题，确认这不是重复的
+          required: true
+        - label: 我已确认这是 CodePulse AI 本身的错误，而不是我的配置问题
+          required: true

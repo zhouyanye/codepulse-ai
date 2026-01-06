@@ -1,0 +1,74 @@
+name: ⚙️ 后端 (FastAPI) 问题
+about: 报告与FastAPI后端相关的问题
+title: "⚙️ [Backend] "
+labels: ["backend", "fastapi", "api", "bug"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您报告后端问题！请提供详细信息以便我们快速定位和解决问题。
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 清晰简洁地描述后端API或服务问题
+      placeholder: 告诉我们您在FastAPI后端遇到了什么问题...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: 受影响的后端组件
+      description: 选择受影响的后端组件
+      options:
+        - API路由
+        - 分析服务
+        - AI分析器
+        - 静态扫描
+        - 任务队列 (Celery)
+        - 数据库
+        - 缓存 (Redis)
+        - 成本估算
+        - 自动修复
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 重现步骤
+      description: 请提供重现该问题的详细步骤
+      value: |
+        1.
+        2.
+        3.
+        4.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+      description: 清晰简洁地描述您期望后端如何表现
+      placeholder: 告诉我们您期望后端如何工作...
+    validations:
+      required: true
+
+  - type: input
+    id: api-endpoint
+    attributes:
+      label: 相关API端点
+      description: 问题涉及的API端点（如果知道）
+      placeholder: 例如：/api/v1/analyze, /api/v1/health
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 后端错误日志
+      description: 请粘贴后端控制台中的错误信息
+      render: shell
