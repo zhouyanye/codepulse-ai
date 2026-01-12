@@ -22,7 +22,7 @@ boolean.py==5.0
 brotli==1.2.0
 CacheControl==0.14.4
 cachetools==6.2.2
-celery==5.4.0
+celery==5.6.2
 certifi==2025.11.12
 cffi==2.0.0
 cfgv==3.5.0
