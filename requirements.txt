@@ -138,7 +138,7 @@ rlPyCairo==0.4.0
 rpds-py==0.29.0
 ruamel.yaml==0.18.16
 ruamel.yaml.clib==0.2.15
-safety-schemas==0.0.16
+safety-schemas==0.0.17
 shellingham==1.5.4
 simplejson==3.20.2
 six==1.17.0
